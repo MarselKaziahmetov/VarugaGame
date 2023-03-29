@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DashCooldownIcon : MonoBehaviour
 {
+    [SerializeField] private Image border;
     private Image icon;
 
     private Dash dash;
@@ -35,6 +36,7 @@ public class DashCooldownIcon : MonoBehaviour
         {
             canUse = false;
             icon.fillAmount = 1;
+            border.enabled = false;
         }
 
         if (!canUse)
@@ -45,6 +47,7 @@ public class DashCooldownIcon : MonoBehaviour
             {
                 icon.fillAmount = 0;
                 canUse = true;
+                border.enabled = true;
             }
         }
     }

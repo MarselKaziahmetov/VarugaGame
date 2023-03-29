@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ShootingAbilityCooldownIcon : MonoBehaviour
 {
     [SerializeField] private Abilitities abilitities;
+    [SerializeField] private Image border;
 
     private Image icon;
 
@@ -56,6 +57,7 @@ public class ShootingAbilityCooldownIcon : MonoBehaviour
         {
             canUse = false;
             icon.fillAmount = 1;
+            border.enabled = false;
         }
 
         if (!canUse)
@@ -64,6 +66,7 @@ public class ShootingAbilityCooldownIcon : MonoBehaviour
 
             if (icon.fillAmount <= 0)
             {
+                border.enabled = true;
                 icon.fillAmount = 0;
                 canUse = true;
             }

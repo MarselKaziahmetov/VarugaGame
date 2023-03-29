@@ -7,7 +7,7 @@ public class EnergyArrowBeh : MonoBehaviour
     private float speed;
     private int damage;
     private float timeToDestroy;
-    [SerializeField] private ParticleSystem arrowPS;
+    //[SerializeField] private ParticleSystem arrowPS;
 
     private EnergyArrow energyArrow;
 
@@ -35,7 +35,7 @@ public class EnergyArrowBeh : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            arrowPS.transform.parent = null;
+            //arrowPS.transform.parent = null;
             //arrowPS.Play();
 
             Destroy(gameObject);
