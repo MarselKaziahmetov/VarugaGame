@@ -36,6 +36,4 @@ public abstract class PassiveAbility : MonoBehaviour
             canUse = true;
         }
     }
-
-    public abstract void AbilityUpgrade();
 }

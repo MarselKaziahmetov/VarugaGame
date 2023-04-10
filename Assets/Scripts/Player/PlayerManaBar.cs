@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class PlayerManaBar : MonoBehaviour
 {
     private Slider manaBar;
+    private PlayerManaSystem manaSystem;
 
-    void Start()
+    void Start() 
     {
+        manaSystem = GameObject.FindWithTag("Player").GetComponent<PlayerManaSystem>();
         manaBar = GetComponent<Slider>();
     }
 
     void Update()
     {
-        manaBar.value = ManaSystem.GetManaValue() / (ManaSystem.GetMaxManaValue() / manaBar.maxValue);
+        manaBar.value = manaSystem.GetManaValue() / (manaSystem.GetMaxManaValue() / manaBar.maxValue);
     }
 }

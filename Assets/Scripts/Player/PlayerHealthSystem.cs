@@ -8,6 +8,7 @@ public class PlayerHealthSystem : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private GameObject deathPanel;
     [SerializeField] private Animator deathPanelAnim;
+    [SerializeField] private Timer timer;
 
     private int currentHealth;
 
@@ -29,9 +30,26 @@ public class PlayerHealthSystem : MonoBehaviour
             Die();
         }
     }
+    public void IncreaseCurrentHealth(int manaValue)
+    {
+        if (currentHealth + manaValue <= maxHealth)
+        {
+            currentHealth += manaValue;
+        }
+        else
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
+    public void IncreaseMaxHealth(int manaValue)
+    {
+        maxHealth = manaValue;
+    }
 
     private void Die()
     {
+        timer.timerIsActivated = false;
         deathPanel.SetActive(true);
         deathPanelAnim.SetBool("IsLightning", true);
         Destroy(gameObject);

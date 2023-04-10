@@ -11,11 +11,11 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject skillsPanel;
 
-    private GameStateSwitcher gameStateSwitcher;
+    private GameTimeSwitcher gameStateSwitcher;
 
     private void Start()
     {
-        gameStateSwitcher = GameStateSwitcher.instance;
+        gameStateSwitcher = GameTimeSwitcher.instance;
         pausePanel.SetActive(false);
         itemsPanel.SetActive(false);
         skillsPanel.SetActive(false);
@@ -34,6 +34,22 @@ public class PauseMenu : MonoBehaviour
 
                 case false:
                     skillsPanel.SetActive(true);
+                    gameStateSwitcher.Pause();
+                    return;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            switch (pausePanel.activeInHierarchy)
+            {
+                case true:
+                    pausePanel.SetActive(false);
+                    gameStateSwitcher.Resume();
+                    return;
+
+                case false:
+                    pausePanel.SetActive(true);
                     gameStateSwitcher.Pause();
                     return;
             }
