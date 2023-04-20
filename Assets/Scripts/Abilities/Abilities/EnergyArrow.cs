@@ -5,12 +5,11 @@ using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class EnergyArrow : ShootingAbility
 {
-    public GameObject projectile;
-
     public override void AbilityUse()
     {
         GameObject createdProj = Instantiate(projectile, transform);
         createdProj.transform.parent = null;
+        createdProj.transform.localScale = createdProj.transform.localScale * sizeModifier;
     }
 
     private void Update()

@@ -6,14 +6,22 @@ using UnityEngine.UI;
 public class AbilitiesSkillTree : MonoBehaviour
 {
     public Text changesText;
-    public Text abilityPointsCostText;
+    public bool isChangesInPercent;
 
+    public Text abilityPointsCostText;
     public int reinforcement;
     public int abilityPointsCost;
 
     public void InitializeText()
     {
         abilityPointsCostText.text = abilityPointsCost.ToString();
-        changesText.text = $"+{reinforcement}%";
+        if (isChangesInPercent)
+        {
+            changesText.text = $"+{reinforcement}%";
+        }
+        else
+        {
+            changesText.text = $"+{reinforcement}";
+        }
     }
 }

@@ -57,7 +57,7 @@ public class PlayerLevel : MonoBehaviour
 
         currentLevel = 0;
         nextLevelExperience = 10;
-        abilityPoints = 10;
+        abilityPoints = 30;
     }
 
     private void Update()

@@ -14,12 +14,23 @@ public abstract class ShootingAbility : MonoBehaviour
     public float cooldownTime;
     public int manaCost;    
     public float speed;
-    public int damage;
+    public float damage;
     public int extraPentration;
-    public float sizeModifier;
     public float timeToDestroy;
+    public float sizeModifier;
+    public List<GameObject> projectilesMultiplier;
 
     [HideInInspector] public bool canUse = true;
+    [HideInInspector] public GameObject projectile;
+    [HideInInspector] public PlayerManaSystem manaSystem;
+    [HideInInspector] public int quantityMultiplier;
+
+    private void Start()
+    {
+        IncreaseProjectileMultiplier(0);
+        sizeModifier = 1;
+        quantityMultiplier = 0;
+    }
 
     public void TriggerAbility()
     {
@@ -45,19 +56,11 @@ public abstract class ShootingAbility : MonoBehaviour
 
     public void DecreaseCooldownIme(float value)
     {
-        if (cooldownTime - value < 0)
+        AddInPercent(ref cooldownTime, -value);
+        if (cooldownTime < 0)
         {
             cooldownTime = 0;
         }
-        else
-        {
-            cooldownTime -= value;
-        }
-    }
-
-    public void IncreaseCooldownIme(float value)
-    {
-        cooldownTime += value;
     }
 
     public void DecreaseManaCost(int value)
@@ -72,55 +75,25 @@ public abstract class ShootingAbility : MonoBehaviour
         }
     }
 
-    public void IncreaseManaCost(int value)
+    public void IncreaseProjectileMultiplier(int value)
     {
-        manaCost += value;   
+        quantityMultiplier += value;
+        projectile = projectilesMultiplier[quantityMultiplier];
     }
 
-    public void DecreaseSpeed(float value)
+    public void IncreseSize(float value)
     {
-        if (speed - value < 0)
-        {
-            speed = 0;
-        }
-        else
-        {
-            speed -= value;
-        }
+        AddInPercent(ref sizeModifier, value);
     }
 
     public void IncreaseSpeed(float value)
     {
-        speed += speed / 100 * value;
+        AddInPercent(ref speed, value);
     }
 
-    public void DecreaseDamage(int value)
+    public void IncreaseDamage(float value)
     {
-        if (damage - value < 0)
-        {
-            damage = 0;
-        }
-        else
-        {
-            damage -= value;
-        }
-    }
-
-    public void IncreaseDamage(int value)
-    {
-        damage += value;
-    }
-
-    public void DecreaseExtraPenetration(int value)
-    {
-        if (extraPentration - value < 0)
-        {
-            extraPentration = 0;
-        }
-        else
-        {
-            extraPentration -= value;
-        }
+        AddInPercent(ref damage, value);
     }
 
     public void IncreaseExtraPentration(int value)
@@ -128,4 +101,8 @@ public abstract class ShootingAbility : MonoBehaviour
         extraPentration += value;
     }
 
+    private void AddInPercent(ref float value, float addValue)
+    {
+        value += value / 100 * addValue;
+    }
 }

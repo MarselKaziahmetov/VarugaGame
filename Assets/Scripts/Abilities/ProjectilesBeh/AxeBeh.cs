@@ -5,7 +5,7 @@ using UnityEngine;
 public class AxeBeh : MonoBehaviour
 {
     private float speed;
-    private int damage;
+    private float damage;
     private float timeToDestroy;
     private int extraPentration;
 

@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnergyArrowBeh : MonoBehaviour
 {
     private float speed;
-    private int damage;
+    private float damage;
     private float timeToDestroy;
+    private int extraPentration;
     //[SerializeField] private ParticleSystem arrowPS;
 
     private EnergyArrow energyArrow;
@@ -17,6 +18,7 @@ public class EnergyArrowBeh : MonoBehaviour
         speed = energyArrow.speed;
         damage = energyArrow.damage;
         timeToDestroy = energyArrow.timeToDestroy;
+        extraPentration = energyArrow.extraPentration;
     }
 
     void Update()
@@ -38,8 +40,12 @@ public class EnergyArrowBeh : MonoBehaviour
             //arrowPS.transform.parent = null;
             //arrowPS.Play();
 
-            Destroy(gameObject);
             collision.gameObject.GetComponent<HealthSystem>().TakeDamage(damage);
+            if (extraPentration == 0)
+            {
+                Destroy(gameObject);
+            }
+            extraPentration--;
         }
     }
 }

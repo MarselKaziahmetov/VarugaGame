@@ -11,9 +11,17 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float countOfCreatures;
     [SerializeField] private float spawnRadius;
 
+    private GameObject player;
+
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         StartCoroutine(Spawner());    
+    }
+
+    private void Update()
+    {
+        transform.position = player.transform.position;
     }
 
     IEnumerator Spawner()

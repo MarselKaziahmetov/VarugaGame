@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
+    [SerializeField] private float maxHealth;
     [SerializeField] private GameObject spawnOrb;
 
-    private int currentHealth;
+    private float currentHealth;
 
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (currentHealth > 0)
         {
@@ -34,11 +34,11 @@ public class HealthSystem : MonoBehaviour
         PlayerLevel.instance.KillsCount++;
     }
 
-    public int GetHealthValue()
+    public float GetHealthValue()
     {
         return currentHealth;
     }
-    public int GetMaxHealthValue()
+    public float GetMaxHealthValue()
     {
         return maxHealth;
     }

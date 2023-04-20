@@ -31,11 +31,27 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
         InitializeText();
     }
 
+    public void LevelUpMultiplier()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.IncreaseProjectileMultiplier(reinforcement);
+        }
+    }
+
+    public void LevelUpSize()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.IncreseSize(reinforcement);
+        }
+    }
+
     public void LevelUpCooldownIme()
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.IncreaseCooldownIme(reinforcement);
+            ability.DecreaseCooldownIme(reinforcement);
         }
     }
 

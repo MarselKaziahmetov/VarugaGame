@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Axe : ShootingAbility
 {
-    public GameObject projectile;
-    private PlayerManaSystem manaSystem;
-
     private void Start()
     {
         manaSystem = GameObject.FindWithTag("Player").GetComponent<PlayerManaSystem>();
