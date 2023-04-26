@@ -5,23 +5,41 @@ using UnityEngine.UI;
 
 public class AbilitiesSkillTree : MonoBehaviour
 {
-    public Text changesText;
-    public bool isChangesInPercent;
+    [Header("Display Changes On Button")]
+    [SerializeField] private Text changesText;
+    [SerializeField] private bool isChangesInPercent;
+    [SerializeField] private bool isChangesNegative;
+    [SerializeField] private Text abilityPointsCostText;
 
-    public Text abilityPointsCostText;
+    [Header("Logic Changes On Button")]
     public int reinforcement;
     public int abilityPointsCost;
 
     public void InitializeText()
     {
         abilityPointsCostText.text = abilityPointsCost.ToString();
+        
         if (isChangesInPercent)
         {
-            changesText.text = $"+{reinforcement}%";
+            if (isChangesNegative)
+            {
+                changesText.text = $"-{reinforcement}%";
+            }
+            else
+            {
+                changesText.text = $"+{reinforcement}%";
+            }
         }
         else
         {
-            changesText.text = $"+{reinforcement}";
+            if (isChangesNegative)
+            {
+                changesText.text = $"-{reinforcement}";
+            }
+            else
+            {
+                changesText.text = $"+{reinforcement}";
+            }
         }
     }
 }

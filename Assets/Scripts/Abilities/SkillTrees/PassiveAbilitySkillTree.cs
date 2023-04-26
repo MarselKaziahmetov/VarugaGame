@@ -6,11 +6,13 @@ public class PassiveAbilitySkillTree : AbilitiesSkillTree
 {
     public enum AbilityType
     {
-        
+        EnergyArrow,
+        Axe,
+        Dash
     }
 
     public AbilityType abilityType;
-    private PassiveAbility  ability;
+    [HideInInspector] public PassiveAbility ability;
 
     void Start()
     {
@@ -19,10 +21,32 @@ public class PassiveAbilitySkillTree : AbilitiesSkillTree
             case AbilityType.EnergyArrow:
                 ability = GameObject.FindWithTag("EnergyArrow").GetComponent<EnergyArrow>();
                 break;
+            case AbilityType.Axe:
+                ability = GameObject.FindWithTag("Axe").GetComponent<Axe>();
+                break;
+            case AbilityType.Dash:
+                ability = GameObject.FindWithTag("Axe").GetComponent<Axe>();
+                break;
             default:
                 break;
         }*/
 
         InitializeText();
+    }
+
+    public void LevelUpCooldownIme()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.DecreaseCooldownTime(reinforcement);
+        }
+    }
+
+    public void LevelUpManaCost()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.DecreaseManaCost(reinforcement);
+        }
     }
 }

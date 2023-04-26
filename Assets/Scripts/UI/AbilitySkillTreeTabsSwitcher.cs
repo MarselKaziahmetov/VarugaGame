@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AbilitySkillTreeTabsSwitcher : MonoBehaviour
 {
+    [SerializeField] private GameObject passivePanel;
     [SerializeField] private GameObject enegyArrowPanel;
     [SerializeField] private GameObject holyAxePanel;
     [SerializeField] private GameObject dashPanel;
@@ -12,9 +13,11 @@ public class AbilitySkillTreeTabsSwitcher : MonoBehaviour
     private GameObject currentPanel;
     void Start()
     {
-        currentPanel = enegyArrowPanel;
+        currentPanel = passivePanel;
 
         currentPanel.SetActive(true);
+
+        enegyArrowPanel.SetActive(false);
         holyAxePanel.SetActive(false);
         dashPanel.SetActive(false);
     }

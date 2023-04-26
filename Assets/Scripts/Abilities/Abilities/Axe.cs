@@ -13,6 +13,7 @@ public class Axe : ShootingAbility
     {
         GameObject createdProj = Instantiate(projectile, transform);
         createdProj.transform.parent = null;
+        createdProj.transform.localScale *= sizeModifier;
         manaSystem.UseMana(manaCost);
     }
 

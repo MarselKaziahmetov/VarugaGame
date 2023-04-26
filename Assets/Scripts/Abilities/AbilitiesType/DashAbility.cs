@@ -3,20 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class DashAbility : MonoBehaviour
+public abstract class DashAbility : Ability
 {
-    [Header("Ability Info and Stats")]
-    public string title;
-    public KeyCode keyCode;
-    public int manaCost;
-    public float cooldownTime = 2f;
+    public float dashDistance = 5f;
+    public float dashDuration = 0.5f;
+    public Transform player;
+    public TrailRenderer trail;
 
-    [HideInInspector] public bool canUse = true;
-
-    public void TriggerAbility()
+    public override void TriggerAbility()
     {
         AbilityUse();
     }
 
-    public abstract void AbilityUse();
+    public override void AbilityUse() { }
+
+    public void DecreaseDashDuration(float value)
+    {
+        AddInPercent(ref dashDuration, -value);
+        if (dashDuration < 0)
+        {
+            dashDuration = 0;
+        }
+    }
+    public void IncreaseDashDistance(float value)
+    {
+        AddInPercent(ref dashDistance, value);
+    }
 }

@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class Dash : DashAbility
 {
-    [SerializeField] private float dashDistance = 5f; 
-    public float dashDuration = 0.5f; 
-    [SerializeField] private Transform player;
-    [SerializeField] private TrailRenderer trail;
-
     private PlayerManaSystem manaSystem;
     private float currentDashTime = 0f;
     private float currentCooldownTime = 0f;

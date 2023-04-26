@@ -10,8 +10,6 @@ public class DashCooldownIcon : MonoBehaviour
 
     private Dash dash;
 
-    private float cooldown;
-    private KeyCode key;
     private bool canUse = true;
 
     void Start()
@@ -20,9 +18,6 @@ public class DashCooldownIcon : MonoBehaviour
         icon = GetComponent<Image>();
 
         icon.fillAmount = 0;
-
-        cooldown = dash.cooldownTime;
-        key = dash.keyCode;
     }
 
     void Update()
@@ -32,7 +27,7 @@ public class DashCooldownIcon : MonoBehaviour
 
     private void IconReloading()
     {
-        if (Input.GetKey(key) && canUse && !dash.canUse)
+        if (Input.GetKey(dash.keyCode) && canUse && !dash.canUse)
         {
             canUse = false;
             icon.fillAmount = 1;
@@ -41,7 +36,7 @@ public class DashCooldownIcon : MonoBehaviour
 
         if (!canUse)
         {
-            icon.fillAmount -= 1 / (cooldown + dash.dashDuration) * Time.deltaTime;
+            icon.fillAmount -= 1 / (dash.cooldownTime + dash.dashDuration) * Time.deltaTime;
 
             if (icon.fillAmount <= 0)
             {

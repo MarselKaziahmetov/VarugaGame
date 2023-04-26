@@ -9,7 +9,7 @@ public class EnergyArrow : ShootingAbility
     {
         GameObject createdProj = Instantiate(projectile, transform);
         createdProj.transform.parent = null;
-        createdProj.transform.localScale = createdProj.transform.localScale * sizeModifier;
+        createdProj.transform.localScale *= sizeModifier;
     }
 
     private void Update()

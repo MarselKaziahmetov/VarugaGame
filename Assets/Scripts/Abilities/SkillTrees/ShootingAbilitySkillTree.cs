@@ -12,7 +12,7 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
     }
 
     public AbilityType abilityType;
-    private ShootingAbility ability;
+    [HideInInspector] public ShootingAbility ability;
 
     void Start()
     {
@@ -30,7 +30,6 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
 
         InitializeText();
     }
-
     public void LevelUpMultiplier()
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
@@ -51,7 +50,7 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.DecreaseCooldownIme(reinforcement);
+            ability.DecreaseCooldownTime(reinforcement);
         }
     }
 
@@ -59,7 +58,7 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.DecreaseManaCost(reinforcement); 
+            ability.DecreaseManaCost(reinforcement);
         }
     }
 
@@ -67,7 +66,7 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.IncreaseSpeed(reinforcement); 
+            ability.IncreaseSpeed(reinforcement);
         }
     }
 
@@ -75,7 +74,7 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.IncreaseDamage(reinforcement); 
+            ability.IncreaseDamage(reinforcement);
         }
     }
 
@@ -83,7 +82,7 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.IncreaseExtraPentration(reinforcement); 
+            ability.IncreaseExtraPentration(reinforcement);
         }
     }
 }

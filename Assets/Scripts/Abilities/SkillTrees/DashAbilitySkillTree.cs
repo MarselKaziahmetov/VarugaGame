@@ -10,19 +10,49 @@ public class DashAbilitySkillTree : AbilitiesSkillTree
     }
 
     public AbilityType abilityType;
-    private DashAbility ability;
+    [HideInInspector] public DashAbility ability;
 
     void Start()
     {
         switch (abilityType)
         {
             case AbilityType.Dash:
-                ability = GameObject.FindWithTag("Dash").GetComponent<DashAbility>();
+                ability = GameObject.FindWithTag("Dash").GetComponent<Dash>();
                 break;
             default:
                 break;
         }
 
         InitializeText();
+    }
+    public void LevelUpCooldownTime()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.DecreaseCooldownTime(reinforcement);
+        }
+    }
+
+    public void LevelUpManaCost()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.DecreaseManaCost(reinforcement);
+        }
+    }
+    public void LevelUpDashDuration()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.DecreaseDashDuration(reinforcement);
+        }
+    }
+
+    public void LevelUpDashDistance()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.IncreaseDashDistance(reinforcement);
+        }
     }
 }
