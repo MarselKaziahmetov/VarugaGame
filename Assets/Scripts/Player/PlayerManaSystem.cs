@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerManaSystem : MonoBehaviour
 {
-    public int maxManaValue;
+    [SerializeField] private int maxMana;
 
-    private int maxMana;
-    private int currentMana;
+    [SerializeField] private int currentMana;
+    private int manaRegenValue;
+    private bool manaRegenIsEnabled;
+    private float time;
 
     private void Start()
     {
-        maxMana = maxManaValue;
+        manaRegenValue = 0;
+        time = 1;
+
         currentMana = maxMana;
+        manaRegenIsEnabled = false;
+
+        StartCoroutine(manaRegenDelay());
     }
 
     public void UseMana(int manaValue)
@@ -39,9 +46,37 @@ public class PlayerManaSystem : MonoBehaviour
         }
     }
 
+    private IEnumerator manaRegenDelay()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(time);
+            ManaRegen();
+        }
+    }
+
+    public void ManaRegen()
+    {
+        if (manaRegenIsEnabled)
+        { 
+            IncreaseCurrentMana(manaRegenValue);
+        }
+    }
+
+    public void IncreaseManaRegenValue(int value) 
+    {
+        manaRegenValue += value;
+    }
+
+    public void EnableManaRegen()
+    {
+        manaRegenIsEnabled = true;
+    }
+
     public void IncreaseMaxMana(int manaValue)
     {
-        maxMana = manaValue;
+        maxMana += manaValue;
+        IncreaseCurrentMana(manaValue);
     }
 
     public int GetManaValue()

@@ -10,12 +10,21 @@ public class PlayerHealthSystem : MonoBehaviour
     [SerializeField] private Animator deathPanelAnim;
     [SerializeField] private Timer timer;
 
-    private int currentHealth;
+    [SerializeField] private int currentHealth;
+    private int healthRegenValue;
+    private bool healthRegenIsEnabled;
+    private float time;
 
     private void Start()
     {
+        healthRegenValue = 0;
+        time = 1;
+
         deathPanel.SetActive(false);
         currentHealth = maxHealth;
+
+        healthRegenIsEnabled = false;
+        StartCoroutine(HealthRegenDelay());
     }
 
     public void TakeDamage(int damage)
@@ -42,9 +51,37 @@ public class PlayerHealthSystem : MonoBehaviour
         }
     }
 
-    public void IncreaseMaxHealth(int manaValue)
+    private IEnumerator HealthRegenDelay()
     {
-        maxHealth = manaValue;
+        while (true)
+        {
+            yield return new WaitForSeconds(time);
+            HealthRegen();
+        }
+    }
+
+    public void HealthRegen()
+    {
+        if (healthRegenIsEnabled)
+        {
+            IncreaseCurrentHealth(healthRegenValue);
+        }
+    }
+
+    public void IncreaseHealthRegenValue(int value)
+    {
+        healthRegenValue += value;
+    }
+
+    public void EnableHealthRegen()
+    {
+        healthRegenIsEnabled = true;
+    }
+
+    public void IncreaseMaxHealth(int value)
+    {
+        maxHealth += value;
+        IncreaseCurrentHealth(value);
     }
 
     private void Die()

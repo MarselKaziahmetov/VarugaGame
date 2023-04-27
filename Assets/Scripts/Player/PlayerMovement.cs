@@ -52,4 +52,9 @@ public class PlayerMovement : MonoBehaviour
 
         transform.localScale = Scale;
     }
+
+    public void IncreaseMovementSpeed(float value)
+    {
+        speed += value;
+    }
 }

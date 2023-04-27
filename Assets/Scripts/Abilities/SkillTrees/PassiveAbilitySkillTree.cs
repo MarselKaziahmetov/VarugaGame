@@ -4,49 +4,67 @@ using UnityEngine;
 
 public class PassiveAbilitySkillTree : AbilitiesSkillTree
 {
-    public enum AbilityType
-    {
-        EnergyArrow,
-        Axe,
-        Dash
-    }
-
-    public AbilityType abilityType;
-    [HideInInspector] public PassiveAbility ability;
+    private PlayerHealthSystem playerHealth;
+    private PlayerManaSystem playerMana;
+    private PlayerMovement playerMovement;
+    private PlayerLevel playerLevel;
 
     void Start()
     {
-        /*switch (abilityType)
-        {
-            case AbilityType.EnergyArrow:
-                ability = GameObject.FindWithTag("EnergyArrow").GetComponent<EnergyArrow>();
-                break;
-            case AbilityType.Axe:
-                ability = GameObject.FindWithTag("Axe").GetComponent<Axe>();
-                break;
-            case AbilityType.Dash:
-                ability = GameObject.FindWithTag("Axe").GetComponent<Axe>();
-                break;
-            default:
-                break;
-        }*/
-
         InitializeText();
+        playerLevel = PlayerLevel.instance;
+        playerMana = GameObject.FindWithTag("Player").GetComponent<PlayerManaSystem>();
+        playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealthSystem>();
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
-    public void LevelUpCooldownIme()
+    public void IncreseExperienceModifier()
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.DecreaseCooldownTime(reinforcement);
+            playerLevel.ExpirienceModifier += reinforcement;
         }
     }
 
-    public void LevelUpManaCost()
+    public void IncreseMovementSpeed()
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.DecreaseManaCost(reinforcement);
+            playerMovement.IncreaseMovementSpeed(reinforcement);
+        }
+    }
+
+    public void IncreseMaxHealth()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            playerHealth.IncreaseMaxHealth(reinforcement);
+        }
+    }
+
+    public void IncreseHealthRegeneration()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            playerHealth.EnableHealthRegen();
+            playerHealth.IncreaseHealthRegenValue(reinforcement);
+        }
+    }
+
+    public void IncreseMaxMana()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            playerMana.IncreaseMaxMana(reinforcement);
+        }
+    }
+
+    public void IncreseManaRegeneration()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            playerMana.EnableManaRegen();
+            playerMana.IncreaseManaRegenValue(reinforcement);
         }
     }
 }

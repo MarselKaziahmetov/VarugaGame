@@ -9,6 +9,7 @@ public class AbilitiesSkillTree : MonoBehaviour
     [SerializeField] private Text changesText;
     [SerializeField] private bool isChangesInPercent;
     [SerializeField] private bool isChangesNegative;
+    [SerializeField] private bool isPerSecond;
     [SerializeField] private Text abilityPointsCostText;
 
     [Header("Logic Changes On Button")]
@@ -23,22 +24,50 @@ public class AbilitiesSkillTree : MonoBehaviour
         {
             if (isChangesNegative)
             {
-                changesText.text = $"-{reinforcement}%";
+                if (isPerSecond)
+                {
+                    changesText.text = $"-{reinforcement}% / sec";
+                }
+                else
+                {
+                    changesText.text = $"-{reinforcement}%";
+                }
             }
             else
             {
-                changesText.text = $"+{reinforcement}%";
+                if (isPerSecond)
+                {
+                    changesText.text = $"+{reinforcement}% / sec";
+                }
+                else
+                {
+                    changesText.text = $"+{reinforcement}%";
+                }
             }
         }
         else
         {
             if (isChangesNegative)
             {
-                changesText.text = $"-{reinforcement}";
+                if (isPerSecond)
+                {
+                    changesText.text = $"-{reinforcement} / sec";
+                }
+                else
+                {
+                    changesText.text = $"-{reinforcement}";
+                }
             }
             else
             {
-                changesText.text = $"+{reinforcement}";
+                if (isPerSecond)
+                {
+                    changesText.text = $"+{reinforcement} / sec";
+                }
+                else
+                {
+                    changesText.text = $"+{reinforcement}";
+                }
             }
         }
     }
