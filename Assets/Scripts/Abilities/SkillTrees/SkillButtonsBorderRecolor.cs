@@ -58,12 +58,18 @@ public class SkillButtonsBorderRecolor : MonoBehaviour
             }
             imageComponent.Add(buttonObject[i].GetComponent<Image>());
         }
+
+        UpdateBordersColor();
     }
 
     public void UpdateBordersColor()
     {
+        //Debug.Log(borders.Count);
+        
         for (int i = 0; i < borders.Count; i++)
         {
+            //Debug.Log("i"+i);
+
             if (imageComponent[i].color == lockedColor || skillTree[i].abilityPointsCost > PlayerLevel.instance.AbilityPoints)
             {
                 borders[i].color = unavialableColor;
@@ -77,5 +83,6 @@ public class SkillButtonsBorderRecolor : MonoBehaviour
                 borders[i].color = fulledColor;
             }
         }
+        //Debug.Log("//////////////////");
     }
 }
