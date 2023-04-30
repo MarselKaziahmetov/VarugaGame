@@ -12,6 +12,7 @@ public class ShootingAbilityCooldownIcon : MonoBehaviour
 
     private Axe axe;
     private EnergyArrow energyArrow;
+    private OverloadZone overloadZone;
 
     private float cooldown;
     private KeyCode key;
@@ -20,13 +21,15 @@ public class ShootingAbilityCooldownIcon : MonoBehaviour
     enum Abilitities
     {
         axe,
-        energyArrow
+        energyArrow,
+        overloadZone
     }
 
     void Start()
     {
         axe = GameObject.FindWithTag("Axe").GetComponent<Axe>();
         energyArrow = GameObject.FindWithTag("EnergyArrow").GetComponent<EnergyArrow>();
+        overloadZone = GameObject.FindWithTag("OverloadZone").GetComponent<OverloadZone>();
         icon = GetComponent<Image>();
 
         icon.fillAmount = 0;
@@ -40,6 +43,10 @@ public class ShootingAbilityCooldownIcon : MonoBehaviour
             case Abilitities.energyArrow:
                 cooldown = energyArrow.cooldownTime;
                 key = energyArrow.keyCode;
+                break;
+            case Abilitities.overloadZone:
+                cooldown = overloadZone.cooldownTime;
+                key = overloadZone.keyCode;
                 break;
             default:
                 break;

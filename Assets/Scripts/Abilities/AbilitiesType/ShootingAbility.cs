@@ -19,7 +19,7 @@ public abstract class ShootingAbility : Ability
 
     private void Start()
     {
-        //IncreaseProjectileMultiplier(0);
+        IncreaseProjectileMultiplier(0);
         sizeModifier = 1;
         quantityMultiplier = 0;
     }

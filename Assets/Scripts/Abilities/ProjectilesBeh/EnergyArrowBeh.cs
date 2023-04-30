@@ -14,23 +14,19 @@ public class EnergyArrowBeh : MonoBehaviour
 
     private void Start()
     {
-        energyArrow = FindObjectOfType<EnergyArrow>().GetComponent<EnergyArrow>();
+        energyArrow = GameObject.FindWithTag("EnergyArrow").GetComponent<EnergyArrow>();
         speed = energyArrow.speed;
         damage = energyArrow.damage;
         timeToDestroy = energyArrow.timeToDestroy;
         extraPentration = energyArrow.extraPentration;
+
+        Invoke(nameof(DestroyProjectile), timeToDestroy);
     }
 
     void Update()
     {
         Vector3 newPosition = transform.position + transform.right * speed * Time.deltaTime;
         transform.position = newPosition;
-
-        timeToDestroy -= Time.deltaTime;
-        if (timeToDestroy <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,5 +43,10 @@ public class EnergyArrowBeh : MonoBehaviour
             }
             extraPentration--;
         }
+    }
+
+    private void DestroyProjectile()
+    {
+        Destroy(gameObject);
     }
 }

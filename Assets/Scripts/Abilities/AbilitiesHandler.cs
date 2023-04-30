@@ -7,6 +7,19 @@ public class AbilitiesHandler : MonoBehaviour
     [SerializeField] private EnergyArrow energyArrow;
     [SerializeField] private Axe Axe;
     [SerializeField] private Dash dash;
+    [SerializeField] private OverloadZone OverloadZone;
+
+    private GameObject player;
+    
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
+
+    private void Update()
+    {
+        transform.position = player.transform.position;
+    }
 
     public void UnlockAbility(MonoBehaviour ability)
     {

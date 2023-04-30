@@ -10,6 +10,7 @@ TagManager:
   - EnergyArrow
   - Axe
   - Dash
+  - OverloadZone
   layers:
   - Default
   - TransparentFX

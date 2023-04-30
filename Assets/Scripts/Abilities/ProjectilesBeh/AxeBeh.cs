@@ -13,12 +13,14 @@ public class AxeBeh : MonoBehaviour
 
     private void Start()
     {
-        axe = FindObjectOfType<Axe>().GetComponent<Axe>();
+        axe = GameObject.FindWithTag("Axe").GetComponent<Axe>();
 
         extraPentration = axe.extraPentration;
         speed = axe.speed;
         damage = axe.damage;
         timeToDestroy = axe.timeToDestroy;
+
+        Invoke(nameof(DestroyProjectile), timeToDestroy);
     }
 
     void Update()
@@ -44,5 +46,10 @@ public class AxeBeh : MonoBehaviour
             }
             extraPentration--;
         }
+    }
+
+    private void DestroyProjectile()
+    {
+        Destroy(gameObject);
     }
 }

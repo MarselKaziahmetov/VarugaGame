@@ -8,7 +8,8 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
     public enum AbilityType
     {
         EnergyArrow,
-        Axe
+        Axe,
+        OverloadZone
     }
 
     public AbilityType abilityType;
@@ -23,6 +24,9 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
                 break;
             case AbilityType.Axe:
                 ability = GameObject.FindWithTag("Axe").GetComponent<Axe>();
+                break;
+            case AbilityType.OverloadZone:
+                ability = GameObject.FindWithTag("OverloadZone").GetComponent<OverloadZone>();
                 break;
             default:
                 break;
