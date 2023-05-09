@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Dash : DashAbility
 {
-    private PlayerManaSystem manaSystem;
     private float currentDashTime = 0f;
     private float currentCooldownTime = 0f;
 

@@ -9,7 +9,7 @@ public class OverloadZoneBeh : MonoBehaviour
 
     private float damage;
     private float timeToDestroy;
-    private float frequency;
+    private float damageFrequency;
 
     private OverloadZone overloadZone;
     private float timer;
@@ -21,9 +21,15 @@ public class OverloadZoneBeh : MonoBehaviour
 
         damage = overloadZone.damage;
         timeToDestroy = overloadZone.timeToDestroy;
-        frequency = overloadZone.frequency;
+        damageFrequency = overloadZone.damageFrequency;
 
-        timer = frequency;
+        timer = damageFrequency;
+
+        var mainModule = aura.main;
+        mainModule.duration = timeToDestroy - .75f;
+
+        mainModule = lightnings.main;
+        mainModule.duration = timeToDestroy - .75f;
 
         aura.Play();
         lightnings.Play();
@@ -40,7 +46,7 @@ public class OverloadZoneBeh : MonoBehaviour
         else
         {
             timerIsActivated = false;
-            timer = frequency;
+            timer = damageFrequency;
         }
     }
 

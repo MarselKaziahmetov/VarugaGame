@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class OverloadZone : ShootingAbility
 {
-    public float frequency;
-
     public override void AbilityUse()
     {
         GameObject createdProj = Instantiate(projectile, transform);
         //createdProj.transform.parent = null;
         createdProj.transform.localScale *= sizeModifier;
+        manaSystem.UseMana(manaCost);
     }
 
     private void Update()
@@ -19,10 +18,5 @@ public class OverloadZone : ShootingAbility
         {
             TriggerAbility();
         }
-    }
-
-    public void IncreseFrequency(float value)
-    {
-        AddInPercent(ref frequency, value);
     }
 }

@@ -10,6 +10,8 @@ public abstract class DashAbility : Ability
     public Transform player;
     public TrailRenderer trail;
 
+    [HideInInspector] public PlayerManaSystem manaSystem;
+
     public override void TriggerAbility()
     {
         AbilityUse();

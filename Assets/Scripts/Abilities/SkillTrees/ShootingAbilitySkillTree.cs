@@ -89,4 +89,20 @@ public class ShootingAbilitySkillTree : AbilitiesSkillTree
             ability.IncreaseExtraPentration(reinforcement);
         }
     }
+
+    public void LevelUpDamageFrequency()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.DecreseFrequency(reinforcement);
+        }
+    }
+
+    public void LevelUpDuration()
+    {
+        if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
+        {
+            ability.IncreseDuration(reinforcement);
+        }
+    }
 }

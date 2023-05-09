@@ -18,7 +18,10 @@ public class AbilitiesHandler : MonoBehaviour
 
     private void Update()
     {
-        transform.position = player.transform.position;
+        if (player)
+        {
+            transform.position = player.transform.position;
+        }
     }
 
     public void UnlockAbility(MonoBehaviour ability)

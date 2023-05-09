@@ -7,9 +7,11 @@ public class NextLevelAccess : SkillButtonsBorderRecolor
 {
     private int activeIndex = 0;
     private int nextIndex = 1;
+    private AbilityPointsView abilityPointsView;
 
     private void Awake()
     {
+        abilityPointsView = GameObject.FindWithTag("PointsText").GetComponent<AbilityPointsView>();
         skillTree = new List<AbilitiesSkillTree>();
         buttonComponent = new List<Button>();
         imageComponent = new List<Image>();
@@ -52,6 +54,8 @@ public class NextLevelAccess : SkillButtonsBorderRecolor
             imageComponent[activeIndex].color = completedColor;
 
             PlayerLevel.instance.AbilityPoints -= skillTree[activeIndex].abilityPointsCost;
+
+            abilityPointsView.UpdatePointsText();
         }
         //если не последний
         else if (activeIndex < (buttonObject.Count - 1) && skillTree[activeIndex].abilityPointsCost <= PlayerLevel.instance.AbilityPoints)
@@ -63,6 +67,7 @@ public class NextLevelAccess : SkillButtonsBorderRecolor
             imageComponent[nextIndex].color = defaultColor;
 
             PlayerLevel.instance.AbilityPoints -= skillTree[activeIndex].abilityPointsCost;
+            abilityPointsView.UpdatePointsText();
 
             activeIndex++;
             nextIndex++;

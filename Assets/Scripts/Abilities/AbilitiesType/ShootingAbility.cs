@@ -10,15 +10,18 @@ public abstract class ShootingAbility : Ability
     public float damage;
     public int extraPentration;
     public float timeToDestroy;
-    public float sizeModifier;
+    public float sizeModifier; 
+    public float damageFrequency;
     public List<GameObject> projectilesMultiplier;
 
-    [HideInInspector] public GameObject projectile;
     [HideInInspector] public PlayerManaSystem manaSystem;
+    [HideInInspector] public GameObject projectile;
     [HideInInspector] public int quantityMultiplier;
 
     private void Start()
     {
+        manaSystem = GameObject.FindWithTag("Player").GetComponent<PlayerManaSystem>();
+
         IncreaseProjectileMultiplier(0);
         sizeModifier = 1;
         quantityMultiplier = 0;
@@ -59,5 +62,14 @@ public abstract class ShootingAbility : Ability
     public void IncreaseExtraPentration(int value)
     {
         extraPentration += value;
+    }
+
+    public void DecreseFrequency(float value)
+    {
+        AddInPercent(ref damageFrequency, -value);
+    }
+    public void IncreseDuration(float value)
+    {
+        AddInPercent(ref timeToDestroy, value);
     }
 }

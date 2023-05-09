@@ -21,7 +21,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        transform.position = player.transform.position;
+        if (player)
+        {
+            transform.position = player.transform.position;
+        }
     }
 
     IEnumerator Spawner()
