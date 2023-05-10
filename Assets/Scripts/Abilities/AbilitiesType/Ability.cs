@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
 {
+    [Header("General")]
     [Header("Ability Info and Stats")]
     public string title;
     public KeyCode keyCode;

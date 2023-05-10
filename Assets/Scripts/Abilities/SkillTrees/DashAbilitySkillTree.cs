@@ -10,7 +10,7 @@ public class DashAbilitySkillTree : AbilitiesSkillTree
     }
 
     public AbilityType abilityType;
-    [HideInInspector] public DashAbility ability;
+    [HideInInspector] public ContinuedAbility ability;
 
     void Start()
     {

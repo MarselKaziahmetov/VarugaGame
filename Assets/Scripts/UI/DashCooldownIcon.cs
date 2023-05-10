@@ -36,7 +36,7 @@ public class DashCooldownIcon : MonoBehaviour
 
         if (!canUse)
         {
-            icon.fillAmount -= 1 / (dash.cooldownTime + dash.dashDuration) * Time.deltaTime;
+            icon.fillAmount -= 1 / (dash.cooldownTime + dash.duration) * Time.deltaTime;
 
             if (icon.fillAmount <= 0)
             {

@@ -45,7 +45,7 @@ public class SkillButtonsBorderRecolor : MonoBehaviour
             switch (treesType)
             {
                 case TreesType.ShootngType:
-                    skillTree.Add(buttonObject[i].GetComponent<ShootingAbilitySkillTree>());
+                    skillTree.Add(buttonObject[i].GetComponent<SpawnerAbilitySkillTree>());
                     break;
                 case TreesType.PassiveType:
                     skillTree.Add(buttonObject[i].GetComponent<PassiveAbilitySkillTree>());

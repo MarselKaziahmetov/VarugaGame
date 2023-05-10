@@ -12,6 +12,7 @@ TagManager:
   - Dash
   - OverloadZone
   - PointsText
+  - Shield
   layers:
   - Default
   - TransparentFX

@@ -21,7 +21,7 @@ public class NextLevelAccess : SkillButtonsBorderRecolor
             switch (treesType)
             {
                 case TreesType.ShootngType:
-                    skillTree.Add(buttonObject[i].GetComponent<ShootingAbilitySkillTree>());
+                    skillTree.Add(buttonObject[i].GetComponent<SpawnerAbilitySkillTree>());
                     break;
                 case TreesType.PassiveType:
                     skillTree.Add(buttonObject[i].GetComponent<PassiveAbilitySkillTree>());
@@ -54,7 +54,6 @@ public class NextLevelAccess : SkillButtonsBorderRecolor
             imageComponent[activeIndex].color = completedColor;
 
             PlayerLevel.instance.AbilityPoints -= skillTree[activeIndex].abilityPointsCost;
-
             abilityPointsView.UpdatePointsText();
         }
         //если не последний

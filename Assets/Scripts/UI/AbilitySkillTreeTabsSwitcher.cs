@@ -11,6 +11,7 @@ public class AbilitySkillTreeTabsSwitcher : MonoBehaviour
     [SerializeField] private GameObject holyAxePanel;
     [SerializeField] private GameObject dashPanel;
     [SerializeField] private GameObject overloadZonePanel;
+    [SerializeField] private GameObject shieldPanel;
 
     [SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
@@ -20,6 +21,7 @@ public class AbilitySkillTreeTabsSwitcher : MonoBehaviour
     [SerializeField] private Image holyAxePanelIMG;
     [SerializeField] private Image dashPanelIMG;
     [SerializeField] private Image overloadZonePanelIMG;
+    [SerializeField] private Image shieldPanelIMG;
 
     private GameObject currentPanel;
     private Image currentPanelIMG;
@@ -34,12 +36,14 @@ public class AbilitySkillTreeTabsSwitcher : MonoBehaviour
         holyAxePanel.SetActive(false);
         dashPanel.SetActive(false);
         overloadZonePanel.SetActive(false);
+        shieldPanel.SetActive(false);
 
         passivePanelIMG.color = inactiveColor;
         enegyArrowPanelIMG.color = inactiveColor;
         holyAxePanelIMG.color = inactiveColor;
         dashPanelIMG.color = inactiveColor;
         overloadZonePanelIMG.color = inactiveColor;
+        shieldPanelIMG.color = inactiveColor;
 
         currentPanelIMG.color = activeColor;
     }
