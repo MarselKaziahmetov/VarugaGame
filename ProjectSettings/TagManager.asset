@@ -13,6 +13,7 @@ TagManager:
   - OverloadZone
   - PointsText
   - Shield
+  - AudioSystem
   layers:
   - Default
   - TransparentFX

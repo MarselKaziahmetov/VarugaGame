@@ -30,11 +30,15 @@ public class PauseMenu : MonoBehaviour
                 case true:
                     skillsPanel.SetActive(false);
                     gameStateSwitcher.Resume();
+                    AudiosHandler.instance.SkillTreeAudioPause();
+                    AudiosHandler.instance.LevelAudioPlay();
                     return;
 
                 case false:
                     skillsPanel.SetActive(true);
                     gameStateSwitcher.Pause();
+                    AudiosHandler.instance.LevelAudioPause();
+                    AudiosHandler.instance.SkillTreeAudioPlay();
                     return;
             }
         }

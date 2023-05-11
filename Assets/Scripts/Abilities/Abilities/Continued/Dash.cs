@@ -12,14 +12,19 @@ public class Dash : ContinuedAbility
     private float currentCooldownTime = 0f;
 
     private Vector2 dashDirection;
+    private Collider2D collider2d;
+    private PlayerHealthSystem hp;
 
     private void Start()
     {
         manaSystem = GameObject.FindWithTag("Player").GetComponent<PlayerManaSystem>();
+        hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealthSystem>();
+        collider2d = GetComponent<Collider2D>();
 
         currentCooldownTime = 0f;
         canUse = true;
         trail.emitting = false;
+        collider2d.enabled = false;
     }
     void Update()
     {
@@ -31,6 +36,8 @@ public class Dash : ContinuedAbility
         if (Input.GetKey(keyCode) && canUse && currentCooldownTime <= 0f && manaSystem.GetManaValue() >= manaCost && new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero)
         {
             StartDash();
+            collider2d.enabled = true;
+            hp.SetInvicible(true);
         }
 
         if (!canUse)
@@ -53,6 +60,7 @@ public class Dash : ContinuedAbility
 
         trail.emitting = true;
         manaSystem.UseMana(manaCost);
+        AudiosHandler.instance.DashAudioPlay();
     }
 
     void Dashing()
@@ -62,6 +70,8 @@ public class Dash : ContinuedAbility
             canUse = true;
             currentCooldownTime = cooldownTime;
             trail.emitting = false;
+            collider2d.enabled=false;
+            hp.SetInvicible(false);
             return;
         }
 
@@ -70,10 +80,12 @@ public class Dash : ContinuedAbility
         if (dashDirection.y == 0 || dashDirection.x == 0)
         {
             player.position += (Vector3)dashDirection * dashDistance * Time.deltaTime / duration;
+            hp.SetInvicible(true);
         }
         else
         {
             player.position += (Vector3)dashDirection * 0.75f * dashDistance * Time.deltaTime / duration;
+            hp.SetInvicible(true);
         }
     }
 }

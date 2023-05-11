@@ -6,6 +6,7 @@ public class Axe : SpawnerAbility
 {
     public override void AbilityUse()
     {
+        AudiosHandler.instance.AxeAudioPlay();
         GameObject createdProj = Instantiate(projectile, transform);
         createdProj.transform.parent = null;
         createdProj.transform.localScale *= sizeModifier;

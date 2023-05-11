@@ -33,6 +33,7 @@ public class OverloadZoneBeh : MonoBehaviour
 
         aura.Play();
         lightnings.Play();
+        AudiosHandler.instance.OverloadZoneAudioPlay();
 
         Invoke(nameof(DestroyProjectile), timeToDestroy);
     }
@@ -64,6 +65,7 @@ public class OverloadZoneBeh : MonoBehaviour
 
     private void DestroyProjectile()
     {
+        AudiosHandler.instance.OverloadZoneAudioStop();
         Destroy(gameObject);
     }
 }

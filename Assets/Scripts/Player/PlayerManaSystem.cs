@@ -6,7 +6,7 @@ public class PlayerManaSystem : MonoBehaviour
 {
     [SerializeField] private int maxMana;
 
-    [SerializeField] private int currentMana;
+    private int currentMana;
     private int manaRegenValue;
     private bool manaRegenIsEnabled;
     private float time;

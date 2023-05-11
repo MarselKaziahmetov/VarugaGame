@@ -7,13 +7,12 @@ public class EnemyDamager : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private float damageTicks;
 
-    private GameObject player;
     private PlayerHealthSystem hp;
     private Coroutine damageDeal;
+
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        hp = player.GetComponent<PlayerHealthSystem>();
+        hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealthSystem>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

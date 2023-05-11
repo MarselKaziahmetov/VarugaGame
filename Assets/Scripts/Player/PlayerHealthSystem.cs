@@ -9,19 +9,24 @@ public class PlayerHealthSystem : MonoBehaviour
     [SerializeField] private GameObject deathPanel;
     [SerializeField] private Animator deathPanelAnim;
     [SerializeField] private Timer timer;
+    [SerializeField] private SpriteRenderer sprite;
 
-    [SerializeField] private int currentHealth;
+    private int currentHealth;
     private int healthRegenValue;
     private bool healthRegenIsEnabled;
     private float time;
+    private bool isInvicible;
+    private Color defaultColor;
 
     private void Start()
     {
         healthRegenValue = 0;
         time = 1;
+        isInvicible = false;
 
         deathPanel.SetActive(false);
         currentHealth = maxHealth;
+        defaultColor = sprite.color;
 
         healthRegenIsEnabled = false;
         StartCoroutine(HealthRegenDelay());
@@ -29,9 +34,12 @@ public class PlayerHealthSystem : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (currentHealth > 0)
+        if (currentHealth > 0 && !isInvicible)
         {
             currentHealth -= damage;
+
+            AudiosHandler.instance.TakeDamageAudioPlay();
+            DisplayTakeDamage();
         }
 
         if (currentHealth <= 0)
@@ -90,6 +98,23 @@ public class PlayerHealthSystem : MonoBehaviour
         deathPanel.SetActive(true);
         deathPanelAnim.SetBool("IsLightning", true);
         Destroy(gameObject);
+    }
+
+    private void DisplayTakeDamage()
+    {
+        sprite.color = Color.red;
+        StartCoroutine(SpriteRecolorDelay());
+        
+        IEnumerator SpriteRecolorDelay()
+        {
+            yield return new WaitForSeconds(.1f);
+            sprite.color = defaultColor;
+        }
+    }
+
+    public void SetInvicible(bool state)
+    {
+        isInvicible = state;
     }
 
     public int GetHealthValue()
