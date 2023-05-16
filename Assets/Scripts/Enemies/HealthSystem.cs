@@ -5,7 +5,6 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
-    [SerializeField] private GameObject spawnOrb;
 
     private float currentHealth;
 
@@ -30,7 +29,6 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
-        Instantiate(spawnOrb, transform.position, transform.rotation);
         PlayerLevel.instance.KillsCount++;
     }
 

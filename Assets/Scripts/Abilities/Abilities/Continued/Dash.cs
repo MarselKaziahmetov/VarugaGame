@@ -26,6 +26,7 @@ public class Dash : ContinuedAbility
         trail.emitting = false;
         collider2d.enabled = false;
     }
+
     void Update()
     {
         TriggerAbility();

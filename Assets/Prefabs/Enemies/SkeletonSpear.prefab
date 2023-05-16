@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 7943658002148377511}
   - component: {fileID: 4153099094090563044}
   - component: {fileID: 4153099094090563035}
+  - component: {fileID: 6999976904505774663}
   m_Layer: 0
   m_Name: SkeletonSpear
   m_TagString: Enemy
@@ -203,7 +204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 150
-  spawnOrb: {fileID: 1987722020781579356, guid: 43ece1ac3432aac47a885d15c2ba638d, type: 3}
 --- !u!114 &7943658002148377511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +265,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6999976904505774663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153099094090563040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08359f590eeb5f446a5808a743e87d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems:
+  - itemPrefab: {fileID: 8369388944579020183, guid: 6b56f03590c99374c89a7a3f6ad1540a, type: 3}
+    dropChance: 1
+  - itemPrefab: {fileID: 3801295271172553860, guid: 68a66eaafa559d44ca6ae132d38a460c, type: 3}
+    dropChance: 5
+  spawnOrb: {fileID: 1987722020781579356, guid: 43ece1ac3432aac47a885d15c2ba638d, type: 3}
 --- !u!1 &4153099095069355132
 GameObject:
   m_ObjectHideFlags: 0

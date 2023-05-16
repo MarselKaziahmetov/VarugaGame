@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 2386288965869286056}
   - component: {fileID: 8539531232968396011}
   - component: {fileID: 8539531232968395988}
+  - component: {fileID: 7131429228450991397}
   m_Layer: 0
   m_Name: SkeletonSwordsmen
   m_TagString: Enemy
@@ -591,7 +592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  spawnOrb: {fileID: 2258765531167089201, guid: 7cb071c329e408f4aadc2a3ea764e715, type: 3}
 --- !u!114 &2386288965869286056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,3 +653,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &7131429228450991397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8539531232968396015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08359f590eeb5f446a5808a743e87d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems:
+  - itemPrefab: {fileID: 8369388944579020183, guid: 6b56f03590c99374c89a7a3f6ad1540a, type: 3}
+    dropChance: 1
+  - itemPrefab: {fileID: 3801295271172553860, guid: 68a66eaafa559d44ca6ae132d38a460c, type: 3}
+    dropChance: 5
+  spawnOrb: {fileID: 2258765531167089201, guid: 7cb071c329e408f4aadc2a3ea764e715, type: 3}
