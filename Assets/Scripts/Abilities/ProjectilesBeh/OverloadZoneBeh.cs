@@ -13,7 +13,7 @@ public class OverloadZoneBeh : MonoBehaviour
 
     private OverloadZone overloadZone;
     private float timer;
-    private bool timerIsActivated;
+    private List<HealthSystem> enemiesInRange = new List<HealthSystem>();
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class OverloadZoneBeh : MonoBehaviour
         timeToDestroy = overloadZone.timeToDestroy;
         damageFrequency = overloadZone.damageFrequency;
 
-        timer = damageFrequency;
+        timer = 0;
 
         var mainModule = aura.main;
         mainModule.duration = timeToDestroy - .75f;
@@ -40,25 +40,38 @@ public class OverloadZoneBeh : MonoBehaviour
 
     private void Update()
     {
-        if (timerIsActivated && timer>0)
+        if (timer > 0)
         {
             timer -= Time.deltaTime;
         }
         else
         {
-            timerIsActivated = false;
-            timer = damageFrequency;
+            DealDamageToEnemiesInRange();
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.CompareTag("Enemy"))
         {
-            if (!timerIsActivated)
+            HealthSystem hp = collision.GetComponent<HealthSystem>();
+            
+            if (!enemiesInRange.Contains(hp))
             {
-                collision.gameObject.GetComponent<HealthSystem>().TakeDamage(damage);
-                timerIsActivated = true;
+                enemiesInRange.Add(hp);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            HealthSystem hp = collision.GetComponent<HealthSystem>();
+
+            if (enemiesInRange.Contains(hp))
+            {
+                enemiesInRange.Remove(hp);
             }
         }
     }
@@ -67,5 +80,20 @@ public class OverloadZoneBeh : MonoBehaviour
     {
         AudiosHandler.instance.OverloadZoneAudioStop();
         Destroy(gameObject);
+    }
+
+    private void DealDamageToEnemiesInRange()
+    {
+        foreach (HealthSystem hp in enemiesInRange)
+        {
+            hp.TakeDamage(damage);
+        }
+        timer = damageFrequency;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, overloadZone.sizeModifier);
     }
 }

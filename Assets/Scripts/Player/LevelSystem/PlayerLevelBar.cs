@@ -8,6 +8,7 @@ public class PlayerLevelBar : MonoBehaviour
     [SerializeField] private Slider levelBar;
     [SerializeField] private Text levelText;
     [SerializeField] private Text killsText;
+    [SerializeField] private Text coinsText;
 
     private PlayerLevel playerLevel;
     
@@ -21,5 +22,6 @@ public class PlayerLevelBar : MonoBehaviour
         levelBar.value = playerLevel.CurrentExperience / (playerLevel.NextLevelExperience / levelBar.maxValue);
         levelText.text = $"LVL: {playerLevel.CurrentLevel}";
         killsText.text = $"KILLS: {playerLevel.KillsCount}";
+        coinsText.text = $"COINS: {Bank.instance.CoinsAmount}";
     }
 }
