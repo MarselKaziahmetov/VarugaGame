@@ -13,7 +13,7 @@ public class OverloadZoneBeh : MonoBehaviour
 
     private OverloadZone overloadZone;
     private float timer;
-    private List<HealthSystem> enemiesInRange = new List<HealthSystem>();
+    private List<EnemyHealthSystem> enemiesInRange = new List<EnemyHealthSystem>();
 
     private void Start()
     {
@@ -54,7 +54,7 @@ public class OverloadZoneBeh : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            HealthSystem hp = collision.GetComponent<HealthSystem>();
+            EnemyHealthSystem hp = collision.GetComponent<EnemyHealthSystem>();
             
             if (!enemiesInRange.Contains(hp))
             {
@@ -67,7 +67,7 @@ public class OverloadZoneBeh : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            HealthSystem hp = collision.GetComponent<HealthSystem>();
+            EnemyHealthSystem hp = collision.GetComponent<EnemyHealthSystem>();
 
             if (enemiesInRange.Contains(hp))
             {
@@ -84,7 +84,7 @@ public class OverloadZoneBeh : MonoBehaviour
 
     private void DealDamageToEnemiesInRange()
     {
-        foreach (HealthSystem hp in enemiesInRange)
+        foreach (EnemyHealthSystem hp in enemiesInRange)
         {
             hp.TakeDamage(damage);
         }

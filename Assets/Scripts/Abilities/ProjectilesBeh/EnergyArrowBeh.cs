@@ -36,7 +36,7 @@ public class EnergyArrowBeh : MonoBehaviour
             //arrowPS.transform.parent = null;
             //arrowPS.Play();
 
-            collision.gameObject.GetComponent<HealthSystem>().TakeDamage(damage);
+            collision.gameObject.GetComponent<EnemyHealthSystem>().TakeDamage(damage);
             if (extraPentration == 0)
             {
                 Destroy(gameObject);

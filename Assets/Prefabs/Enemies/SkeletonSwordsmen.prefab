@@ -592,6 +592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  animator: {fileID: 8539531231798631806}
+  deathTime: 0.5
 --- !u!114 &2386288965869286056
 MonoBehaviour:
   m_ObjectHideFlags: 0

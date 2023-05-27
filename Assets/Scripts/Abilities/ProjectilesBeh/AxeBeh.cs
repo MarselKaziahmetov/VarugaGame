@@ -39,7 +39,7 @@ public class AxeBeh : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<HealthSystem>().TakeDamage(damage);
+            collision.gameObject.GetComponent<EnemyHealthSystem>().TakeDamage(damage);
             if (extraPentration == 0)
             {
                 Destroy(gameObject);
