@@ -39,9 +39,9 @@ public class MainMenuUI : MonoBehaviour
         PanelSwitcher(levelPanel);
     }
 
-    public void LocTest()
+    public void LoadSceneName(string name)
     {
-        SceneManager.LoadScene("TestLocation");
+        SceneManager.LoadScene(name);
     }
 
     public void UpgradeButton()

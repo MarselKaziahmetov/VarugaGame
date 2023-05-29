@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudiosHandler : MonoBehaviour
 {
     public static AudiosHandler instance;
+
     [SerializeField] private AudioSource levelBackgroundAudio;
     [SerializeField] private AudioSource skillTreeAudio;
     [SerializeField] private AudioSource takeDamageAudio;
@@ -34,6 +35,32 @@ public class AudiosHandler : MonoBehaviour
         skillTreeAudio.Stop();
 
         levelBackgroundAudio.Play();
+    }
+
+    public void MuteVolume()
+    {
+
+
+        levelBackgroundAudio.mute = true;
+        skillTreeAudio.mute = true;
+        takeDamageAudio.mute = true;
+        energyArrowAudio.mute = true;
+        axeAudio.mute = true;
+        dashAudio.mute = true;
+        overloadZoneAudio.mute = true;
+        shieldAudio.mute = true;
+    }
+
+    public void UnMuteVolmue()
+    {
+        levelBackgroundAudio.mute = false;
+        skillTreeAudio.mute = false;
+        takeDamageAudio.mute = false;
+        energyArrowAudio.mute = false;
+        axeAudio.mute = false;
+        dashAudio.mute = false;
+        overloadZoneAudio.mute = false;
+        shieldAudio.mute = false;
     }
 
     public void LevelAudioPlay()
