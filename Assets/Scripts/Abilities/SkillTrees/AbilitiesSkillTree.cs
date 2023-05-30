@@ -13,7 +13,7 @@ public class AbilitiesSkillTree : MonoBehaviour
     [SerializeField] private Text abilityPointsCostText;
 
     [Header("Logic Changes On Button")]
-    public int reinforcement;
+    public float reinforcement;
     public int abilityPointsCost;
 
     public void InitializeText()

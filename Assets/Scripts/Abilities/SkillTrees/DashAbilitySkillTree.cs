@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,7 @@ public class DashAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.DecreaseManaCost(reinforcement);
+            ability.DecreaseManaCost(Convert.ToInt32(reinforcement));
         }
     }
     public void LevelUpDashDuration()

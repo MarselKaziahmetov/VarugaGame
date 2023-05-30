@@ -43,6 +43,10 @@ public class EnergyArrowBeh : MonoBehaviour
             }
             extraPentration--;
         }
+        if (collision.gameObject.tag == "ObstacleMap")
+        {
+            DestroyProjectile();
+        }
     }
 
     private void DestroyProjectile()

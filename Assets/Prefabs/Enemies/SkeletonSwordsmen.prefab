@@ -672,4 +672,6 @@ MonoBehaviour:
     dropChance: 1
   - itemPrefab: {fileID: 3801295271172553860, guid: 68a66eaafa559d44ca6ae132d38a460c, type: 3}
     dropChance: 5
+  - itemPrefab: {fileID: 5635378085125765383, guid: 862bc3d795f9c6542ad0e5f1f9a665ea, type: 3}
+    dropChance: 1
   spawnOrb: {fileID: 2258765531167089201, guid: 7cb071c329e408f4aadc2a3ea764e715, type: 3}

@@ -13,7 +13,7 @@ public class PlayerLevel : MonoBehaviour
         get { return currentLevel; }
     }
 
-    private int maxLevel = 50;
+    private int maxLevel = 500;
 
     private float expirienceModifier;
     public float ExpirienceModifier
@@ -65,7 +65,7 @@ public class PlayerLevel : MonoBehaviour
         expirienceModifier = 1;
         currentLevel = 0;
         nextLevelExperience = 10;
-        abilityPoints = 30;
+        abilityPoints = 100;
     }
 
     private void Update()

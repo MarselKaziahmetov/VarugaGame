@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +39,7 @@ public class PassiveAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            playerHealth.IncreaseMaxHealth(reinforcement);
+            playerHealth.IncreaseMaxHealth(Convert.ToInt32(reinforcement));
         }
     }
 
@@ -47,7 +48,7 @@ public class PassiveAbilitySkillTree : AbilitiesSkillTree
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
             playerHealth.EnableHealthRegen();
-            playerHealth.IncreaseHealthRegenValue(reinforcement);
+            playerHealth.IncreaseHealthRegenValue(Convert.ToInt32(reinforcement));
         }
     }
 
@@ -55,7 +56,7 @@ public class PassiveAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            playerMana.IncreaseMaxMana(reinforcement);
+            playerMana.IncreaseMaxMana(Convert.ToInt32(reinforcement));
         }
     }
 
@@ -64,7 +65,7 @@ public class PassiveAbilitySkillTree : AbilitiesSkillTree
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
             playerMana.EnableManaRegen();
-            playerMana.IncreaseManaRegenValue(reinforcement);
+            playerMana.IncreaseManaRegenValue(Convert.ToInt32(reinforcement));
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class SpawnerAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.IncreaseProjectileMultiplier(reinforcement);
+            ability.IncreaseProjectileMultiplier(Convert.ToInt32(reinforcement));
         }
     }
 
@@ -66,7 +67,7 @@ public class SpawnerAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.DecreaseManaCost(reinforcement);
+            ability.DecreaseManaCost(Convert.ToInt32(reinforcement));
         }
     }
 
@@ -90,7 +91,7 @@ public class SpawnerAbilitySkillTree : AbilitiesSkillTree
     {
         if (PlayerLevel.instance.AbilityPoints >= abilityPointsCost)
         {
-            ability.IncreaseExtraPentration(reinforcement);
+            ability.IncreaseExtraPentration(Convert.ToInt32(reinforcement));
         }
     }
 

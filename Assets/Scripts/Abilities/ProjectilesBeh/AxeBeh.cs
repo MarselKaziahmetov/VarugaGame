@@ -31,7 +31,7 @@ public class AxeBeh : MonoBehaviour
         timeToDestroy -= Time.deltaTime;
         if (timeToDestroy <= 0)
         {
-            Destroy(gameObject);
+            DestroyProjectile();
         }
     }
 
@@ -42,9 +42,13 @@ public class AxeBeh : MonoBehaviour
             collision.gameObject.GetComponent<EnemyHealthSystem>().TakeDamage(damage);
             if (extraPentration == 0)
             {
-                Destroy(gameObject);
+                DestroyProjectile();
             }
             extraPentration--;
+        }
+        if(collision.gameObject.tag == "ObstacleMap")
+        {
+            DestroyProjectile();
         }
     }
 

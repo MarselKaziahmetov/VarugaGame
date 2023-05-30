@@ -5,11 +5,14 @@ using UnityEngine;
 public class Bank : MonoBehaviour
 {
     public static Bank instance;
+
+    public string coinsAmountKey = "coinsAmount";
+
     private int coinsAmount;
     public int CoinsAmount 
     {
         get { return coinsAmount; }
-        set { coinsAmount = value; }
+        set { coinsAmount = value;  PlayerPrefs.SetInt(coinsAmountKey, value); }
     }
 
     private void Awake()
@@ -24,6 +27,7 @@ public class Bank : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        coinsAmount = PlayerPrefs.GetInt(coinsAmountKey, 0);
     }
 
     

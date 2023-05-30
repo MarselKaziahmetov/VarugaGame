@@ -284,6 +284,8 @@ MonoBehaviour:
     dropChance: 1
   - itemPrefab: {fileID: 3801295271172553860, guid: 68a66eaafa559d44ca6ae132d38a460c, type: 3}
     dropChance: 5
+  - itemPrefab: {fileID: 5635378085125765383, guid: 862bc3d795f9c6542ad0e5f1f9a665ea, type: 3}
+    dropChance: 1
   spawnOrb: {fileID: 1987722020781579356, guid: 43ece1ac3432aac47a885d15c2ba638d, type: 3}
 --- !u!1 &4153099095069355132
 GameObject:
