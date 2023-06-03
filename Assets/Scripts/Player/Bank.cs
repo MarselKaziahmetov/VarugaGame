@@ -17,16 +17,14 @@ public class Bank : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
         {
             instance = this;
         }
-        else if (instance == this)
-        {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
         coinsAmount = PlayerPrefs.GetInt(coinsAmountKey, 0);
     }
 

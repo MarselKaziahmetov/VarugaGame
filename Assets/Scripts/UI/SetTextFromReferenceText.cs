@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class SetTextFromReferenceText : MonoBehaviour
 {
-    private Text killsCount;
+    private Text currentText;
     [SerializeField] private Text referenceText;
 
     void Start()
     {
-        killsCount = GetComponent<Text>();    
+        currentText = GetComponent<Text>();    
     }
 
     void Update()
     {
-        killsCount.text = referenceText.text;       
+        currentText.text = referenceText.text;       
     }
 }

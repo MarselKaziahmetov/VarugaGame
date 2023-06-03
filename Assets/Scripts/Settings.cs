@@ -51,11 +51,11 @@ public class Settings : MonoBehaviour
             case GameState.onMenu:
                 if (volumeToggle.isOn)
                 {
-                    menuAudio.mute = false;
+                    menuAudio.mute = true;
                 }
                 else
                 {
-                    menuAudio.mute = true;
+                    menuAudio.mute = false;
                 }
                 break;
             case GameState.onLevel:

@@ -105,4 +105,9 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void OnRetryGameButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

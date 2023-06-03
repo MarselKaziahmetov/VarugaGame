@@ -51,21 +51,18 @@ public class PlayerLevel : MonoBehaviour
     }
     private void Awake()
     {
-        if (instance == null)
-        { 
-            instance = this; 
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
         }
-        else if (instance == this)
-        { 
-            Destroy(gameObject); 
+        else
+        {
+            instance = this;
         }
-
-        DontDestroyOnLoad(gameObject);
 
         expirienceModifier = 1;
         currentLevel = 0;
         nextLevelExperience = 10;
-        abilityPoints = 100;
     }
 
     private void Update()
