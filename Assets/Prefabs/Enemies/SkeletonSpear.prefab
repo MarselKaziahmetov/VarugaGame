@@ -191,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.6
   stoppingDistance: 0.1
+  destroyIfNotVisibleDelay: 10
 --- !u!114 &4153099094090563046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +207,9 @@ MonoBehaviour:
   maxHealth: 150
   animator: {fileID: 4153099095069355121}
   deathTime: 0.5
+  damageFlashDuration: 0.1
+  damageFlashColor: {r: 1, g: 0.4392157, b: 0.4392157, a: 1}
+  spriteRenderer: {fileID: 4153099095069355122}
 --- !u!114 &7943658002148377511
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,10 @@ public class EnemyDamager : MonoBehaviour
 
     void Start()
     {
-        hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealthSystem>();
+        if (GameObject.FindWithTag("Player").GetComponent<PlayerHealthSystem>())
+        {
+            hp = GameObject.FindWithTag("Player").GetComponent<PlayerHealthSystem>();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

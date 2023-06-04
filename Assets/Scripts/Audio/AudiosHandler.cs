@@ -37,8 +37,6 @@ public class AudiosHandler : MonoBehaviour
 
     public void MuteVolume()
     {
-
-
         levelBackgroundAudio.mute = true;
         skillTreeAudio.mute = true;
         takeDamageAudio.mute = true;

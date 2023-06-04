@@ -7,8 +7,13 @@ public class EnemyHealthSystem : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private Animator animator;
     [SerializeField] private float deathTime;
+    [SerializeField] private float damageFlashDuration;
+    [SerializeField] private Color damageFlashColor;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private float currentHealth;
+    private Color originalColor;
+
     private EnemiesMovement enemiesMovement;
     private EnemyDamager enemyDamager;
     private DropSystem dropSystem;
@@ -22,6 +27,8 @@ public class EnemyHealthSystem : MonoBehaviour
         enemyDamager = GetComponent<EnemyDamager>();
         collider2d = GetComponent<Collider2D>();
         dropSystem = GetComponent<DropSystem>();
+
+        originalColor = spriteRenderer.color;
     }
 
     public void TakeDamage(float damage)
@@ -35,6 +42,15 @@ public class EnemyHealthSystem : MonoBehaviour
         {
             Die();
         }
+
+        StartCoroutine(DamageFlashCoroutine());
+    }
+
+    private IEnumerator DamageFlashCoroutine()
+    {
+        spriteRenderer.color = damageFlashColor;
+        yield return new WaitForSeconds(damageFlashDuration);
+        spriteRenderer.color = originalColor;
     }
 
     private void Die()
