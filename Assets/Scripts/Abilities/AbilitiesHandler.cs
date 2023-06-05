@@ -8,6 +8,7 @@ public class AbilitiesHandler : MonoBehaviour
     [SerializeField] private Axe Axe;
     [SerializeField] private Dash dash;
     [SerializeField] private OverloadZone OverloadZone;
+    [SerializeField] private Shield shield;
 
     private GameObject player;
     
@@ -22,6 +23,24 @@ public class AbilitiesHandler : MonoBehaviour
         {
             transform.position = player.transform.position;
         }
+    }
+
+    public void LockAllAbilities()
+    {
+        LockAbility(energyArrow);
+        LockAbility(Axe);
+        LockAbility(dash);
+        LockAbility(OverloadZone);
+        LockAbility(shield);
+    }
+
+    public void UnlockAllAbilities()
+    {
+        UnlockAbility(energyArrow);
+        UnlockAbility(Axe);
+        UnlockAbility(dash);
+        UnlockAbility(OverloadZone);
+        UnlockAbility(shield);
     }
 
     public void UnlockAbility(MonoBehaviour ability)

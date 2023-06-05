@@ -6,23 +6,33 @@ using UnityEngine.UI;
 public class PlayerHealthSystem : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
+    [SerializeField] private float deathTimeDuration;
     [SerializeField] private GameObject deathPanel;
     [SerializeField] private Animator deathPanelAnim;
+    [SerializeField] private Animator playerAnim;
     [SerializeField] private Timer timer;
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private AbilitiesHandler abilitiesHandler;
 
     private int currentHealth;
     private int healthRegenValue;
     private bool healthRegenIsEnabled;
+    private bool isDead;
     private float time;
     private bool isInvicible;
     private Color defaultColor;
+    private Collider2D collider2d;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
         healthRegenValue = 0;
         time = 1;
         isInvicible = false;
+        isDead = false;
+
+        playerMovement = GetComponent<PlayerMovement>();
+        collider2d = GetComponent<Collider2D>();
 
         deathPanel.SetActive(false);
         currentHealth = maxHealth;
@@ -94,10 +104,25 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void Die()
     {
+        playerMovement.enabled = false;
+        collider2d.enabled = false;
+        abilitiesHandler.LockAllAbilities();
+
+        Invoke(nameof(ActivateDeathPanel), deathTimeDuration);   
+        Destroy(gameObject, deathTimeDuration);
+
+        if (!isDead)
+        {
+            playerAnim.SetBool("isDead", true);
+            isDead = true;
+        }
         timer.timerIsActivated = false;
+    }
+
+    private void ActivateDeathPanel()
+    {
         deathPanel.SetActive(true);
         deathPanelAnim.SetBool("IsLightning", true);
-        Destroy(gameObject);
     }
 
     private void DisplayTakeDamage()

@@ -7,6 +7,7 @@ public class Dash : ContinuedAbility
 {
     public Transform player;
     public TrailRenderer trail;
+    public Animator animator;
 
     private float currentDashTime = 0f;
     private float currentCooldownTime = 0f;
@@ -36,6 +37,7 @@ public class Dash : ContinuedAbility
     {
         if (Input.GetKey(keyCode) && canUse && currentCooldownTime <= 0f && manaSystem.GetManaValue() >= manaCost && new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero)
         {
+            animator.SetBool("isDash", true);
             StartDash();
             collider2d.enabled = true;
             hp.SetInvicible(true);
@@ -68,6 +70,7 @@ public class Dash : ContinuedAbility
     {
         if (currentDashTime >= duration)
         {
+            animator.SetBool("isDash", false);
             canUse = true;
             currentCooldownTime = cooldownTime;
             trail.emitting = false;

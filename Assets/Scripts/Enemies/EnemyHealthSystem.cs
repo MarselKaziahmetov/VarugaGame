@@ -6,7 +6,7 @@ public class EnemyHealthSystem : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     [SerializeField] private Animator animator;
-    [SerializeField] private float deathTime;
+    [SerializeField] private float deathTimeDuration;
     [SerializeField] private float damageFlashDuration;
     [SerializeField] private Color damageFlashColor;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -55,7 +55,7 @@ public class EnemyHealthSystem : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject, deathTime);
+        Destroy(gameObject, deathTimeDuration);
 
         animator.SetBool("isDead", true);
         enemiesMovement.enabled = false;
