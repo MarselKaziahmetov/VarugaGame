@@ -12,9 +12,11 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject skillsPanel;
 
     private GameTimeSwitcher gameStateSwitcher;
+    private LoadingScreen loadingScreen;
 
     private void Start()
     {
+        loadingScreen = GetComponent<LoadingScreen>();
         gameStateSwitcher = GameTimeSwitcher.instance;
         pausePanel.SetActive(false);
         itemsPanel.SetActive(false);
@@ -98,7 +100,7 @@ public class PauseMenu : MonoBehaviour
     public void OnExitMenuButton()
     {
         gameStateSwitcher.Resume();
-        SceneManager.LoadScene("Menu");
+        loadingScreen.Loading("Menu");
     }
 
     public void OnExitGameButton()
@@ -108,6 +110,6 @@ public class PauseMenu : MonoBehaviour
 
     public void OnRetryGameButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        loadingScreen.Loading(SceneManager.GetActiveScene().name);
     }
 }

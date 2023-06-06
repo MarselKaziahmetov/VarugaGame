@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -14,9 +14,12 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject characterPanel;
 
     private GameObject currentPanel;
+    private LoadingScreen loadingScreen;
 
     private void Start()
     {
+        loadingScreen = GetComponent<LoadingScreen>();
+
         currentPanel = mainPanel;    
 
         currentPanel.SetActive(true);
@@ -41,7 +44,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void LoadSceneName(string name)
     {
-        SceneManager.LoadScene(name);
+        loadingScreen.Loading(name);
     }
 
     public void UpgradeButton()
