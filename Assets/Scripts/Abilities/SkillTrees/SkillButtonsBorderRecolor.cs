@@ -85,4 +85,9 @@ public class SkillButtonsBorderRecolor : MonoBehaviour
         }
         //Debug.Log("//////////////////");
     }
+
+    private void OnEnable()
+    {
+        UpdateBordersColor();
+    }
 }

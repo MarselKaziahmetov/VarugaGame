@@ -72,4 +72,9 @@ public class NextLevelAccess : SkillButtonsBorderRecolor
             nextIndex++;
         }
     }
+
+    private void OnEnable()
+    {
+        abilityPointsView.UpdatePointsText();
+    }
 }

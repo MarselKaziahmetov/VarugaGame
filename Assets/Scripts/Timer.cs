@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    [SerializeField] private int newLevelID;
+    [SerializeField] private float timeToUnlockNewLevel;
     public bool timerIsActivated;
 
     private Text timerText;
@@ -22,6 +24,8 @@ public class Timer : MonoBehaviour
             ActivateTimer();
             UpdateTimeText();
         }
+
+        NewLevelAccess();
     }
 
     private void ActivateTimer()
@@ -34,5 +38,13 @@ public class Timer : MonoBehaviour
         float minutes = Mathf.FloorToInt(timer / 60);
         float seconds = Mathf.FloorToInt(timer % 60);
         timerText.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+    }
+
+    private void NewLevelAccess()
+    {
+        if (timer>timeToUnlockNewLevel)
+        {
+            PlayerPrefs.SetInt("LevelID", newLevelID);
+        }
     }
 }

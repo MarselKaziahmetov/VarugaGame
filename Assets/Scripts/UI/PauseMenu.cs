@@ -14,6 +14,10 @@ public class PauseMenu : MonoBehaviour
     private GameTimeSwitcher gameStateSwitcher;
     private LoadingScreen loadingScreen;
 
+    private bool inSkillTree;
+    private bool inPausePanel;
+    private bool inChildPausePanel;
+
     private void Start()
     {
         loadingScreen = GetComponent<LoadingScreen>();
@@ -21,43 +25,67 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(false);
         itemsPanel.SetActive(false);
         skillsPanel.SetActive(false);
+
+        inSkillTree = false;
+        inPausePanel = false;
+        inChildPausePanel = false;
     }
 
     private void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            switch (skillsPanel.activeInHierarchy)
+            if (!skillsPanel.activeInHierarchy && !inPausePanel)
             {
-                case true:
-                    skillsPanel.SetActive(false);
-                    gameStateSwitcher.Resume();
-                    AudiosHandler.instance.SkillTreeAudioPause();
-                    AudiosHandler.instance.LevelAudioPlay();
-                    return;
-
-                case false:
-                    skillsPanel.SetActive(true);
-                    gameStateSwitcher.Pause();
-                    AudiosHandler.instance.LevelAudioPause();
-                    AudiosHandler.instance.SkillTreeAudioPlay();
-                    return;
+                // активирует skillTreePanel
+                skillsPanel.SetActive(true);
+                gameStateSwitcher.Pause();
+                AudiosHandler.instance.LevelAudioPause();
+                AudiosHandler.instance.SkillTreeAudioPlay();
+                inSkillTree = true;
+            }
+            else if (skillsPanel.activeInHierarchy && !inPausePanel)
+            {
+                // деактивирует skillTreePanel на кнопку I
+                skillsPanel.SetActive(false);
+                gameStateSwitcher.Resume();
+                AudiosHandler.instance.SkillTreeAudioPause();
+                AudiosHandler.instance.LevelAudioPlay();
+                inSkillTree = false;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            switch (pausePanel.activeInHierarchy)
+            if (!pausePanel.activeInHierarchy && !inSkillTree && !inChildPausePanel)
             {
-                case true:
-                    pausePanel.SetActive(false);
-                    gameStateSwitcher.Resume();
-                    return;
-
-                case false:
-                    pausePanel.SetActive(true);
-                    gameStateSwitcher.Pause();
-                    return;
+                //активирует pausePanel
+                pausePanel.SetActive(true);
+                gameStateSwitcher.Pause();
+                inPausePanel = true;
+            }
+            else if (pausePanel.activeInHierarchy && !inSkillTree && !inChildPausePanel)
+            {
+                //деактивирует pausePanel
+                pausePanel.SetActive(false);
+                gameStateSwitcher.Resume();
+                inPausePanel = false;
+            }
+            else if (skillsPanel.activeInHierarchy && !inPausePanel)
+            {
+                // деактивирует skillTreePanel на кнопку ESC
+                skillsPanel.SetActive(false);
+                gameStateSwitcher.Resume();
+                AudiosHandler.instance.SkillTreeAudioPause();
+                AudiosHandler.instance.LevelAudioPlay();
+                inSkillTree = false;
+            }
+            else if ((itemsPanel.activeInHierarchy || settingsPanel.activeInHierarchy) && !inSkillTree && inChildPausePanel)
+            {
+                itemsPanel.SetActive(false);
+                settingsPanel.SetActive(false);
+                pausePanel.SetActive(true);
+                inChildPausePanel = false;
             }
         }
     }
@@ -66,35 +94,41 @@ public class PauseMenu : MonoBehaviour
     {
         pausePanel.SetActive(true);
         gameStateSwitcher.Pause();
+        inPausePanel = true;
     }
 
     public void OnResumeButton()
     {
         pausePanel.SetActive(false);
         gameStateSwitcher.Resume();
+        inPausePanel = false;
     }
 
     public void OnItemsButton()
     {
         pausePanel.SetActive(false);
         itemsPanel.SetActive(true);
+        inChildPausePanel = true;
     }
     public void OnItemsBackButton()
     {
         itemsPanel.SetActive(false);
         pausePanel.SetActive(true);
+        inChildPausePanel = false;
     }
 
     public void OnSettingsButton()
     {
         pausePanel.SetActive(false);
         settingsPanel.SetActive(true);
+        inChildPausePanel = true;
     }
 
     public void OnSettingsBackButton()
     {
         settingsPanel.SetActive(false);
         pausePanel.SetActive(true);
+        inChildPausePanel = false;
     }
 
     public void OnExitMenuButton()
