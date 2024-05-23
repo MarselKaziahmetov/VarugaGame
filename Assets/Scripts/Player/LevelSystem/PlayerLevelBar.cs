@@ -20,8 +20,8 @@ public class PlayerLevelBar : MonoBehaviour
     void Update()
     {
         levelBar.value = playerLevel.CurrentExperience / (playerLevel.NextLevelExperience / levelBar.maxValue);
-        levelText.text = $"LVL: {playerLevel.CurrentLevel}";
-        killsText.text = $"KILLS: {playerLevel.KillsCount}";
-        coinsText.text = $"COINS: {Bank.instance.CoinsAmount}";
+        levelText.text = $"{playerLevel.CurrentLevel}";
+        killsText.text = $"{playerLevel.KillsCount}";
+        coinsText.text = $"{Bank.instance.CoinsAmount}";
     }
 }

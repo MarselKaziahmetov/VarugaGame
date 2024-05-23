@@ -10,19 +10,14 @@ using UnityEngine.UI;
 public class YandexSDK : MonoBehaviour
 {
     [DllImport("__Internal")]
-    private static extern void GetPlayerData();
+    private static extern void Authorization();
 
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private RawImage photoImage;
 
-    private void Start()
-    {
-        GetPlayerData();
-    }
-
     public void LoadData()
     {
-        GetPlayerData();
+        Authorization();
     }
 
     public void SetName(string name)

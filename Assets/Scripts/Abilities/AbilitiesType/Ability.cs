@@ -6,10 +6,10 @@ public abstract class Ability : MonoBehaviour
 {
     [Header("General")]
     [Header("Ability Info and Stats")]
-    public string title;
-    public KeyCode keyCode;
-    public float cooldownTime;
-    public int manaCost;
+    public string title;        //название
+    public KeyCode keyCode;     //код клавиши для активации
+    public float cooldownTime;  //длительность перезарядки
+    public int manaCost;        //количество маны, необходимое при активации
 
     [HideInInspector] public bool canUse = true;
 

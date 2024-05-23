@@ -10,7 +10,7 @@ public class InternatiolTextDefault : MonoBehaviour
 
     private void Start()
     {
-        switch (LocalozationTMPRO.instance.currentLanguage)
+        switch (Localization.instance.currentLanguage)
         {
             case "en":
                 GetComponent<Text>().text = en;
